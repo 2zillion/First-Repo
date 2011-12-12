@@ -10,7 +10,6 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <title>Google Maps API Sample</title>
     <!--script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw" type="text/javascript"></script-->
-    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAuPsJpk3MBtDpJ4G8cqBnjRRaGTYH6UMl8mADNa0YKuWNNa8VNxQCzVBXTx2DYyXGsTOxpWhvIG7Djw" type="text/javascript"></script>
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript">
 
@@ -34,8 +33,9 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     }
     });
     
-    geocoder = new GClientGeocoder();
-
+    //geocoder = new GClientGeocoder();
+    geocoder = new google.maps.Geocoder();
+      
     //Center map to LA
     //centerMap('Los Angeles');
     //alert('hh'); 
@@ -51,44 +51,43 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
     
     // add landmarks to map
     function addLandmarksToMap() {
-		findLocation('100 Universal City Plaza,Los Angeles');
-		findLocation('860 N. Gower St. at Melrose Avenue,Los Angeles');
-		findLocation('6342 Mulholland Highway,Los Angeles');
-		findLocation('6925 Hollywood Blvd, Hollywood,Los Angeles');
-		findLocation('1531 Ocean Front Walk,Los Angeles');
-		findLocation('Hollywood Blvd at Vine St,,Los Angeles');
-		findLocation('Hollywood Blvd at Vine St,,Los Angeles');
-		findLocation('151 S Grand Ave,Los Angeles');
-		findLocation('6712 Hollywood Blvd,Los Angeles');
-		findLocation('Dana Point Cave,Los Angeles');   
+    findLocation('100 Universal City Plaza,Los Angeles');
+    findLocation('860 N. Gower St. at Melrose Avenue,Los Angeles');
+    findLocation('6342 Mulholland Highway,Los Angeles');
+    findLocation('6925 Hollywood Blvd, Hollywood,Los Angeles');
+    findLocation('1531 Ocean Front Walk,Los Angeles');
+    findLocation('Hollywood Blvd at Vine St,,Los Angeles');
+    findLocation('151 S Grand Ave,Los Angeles');
+    findLocation('6712 Hollywood Blvd,Los Angeles');
+    findLocation('Dana Point Cave,Los Angeles');   
     }
     
     // add car rental locations to map
     function addCarrentalToMap() {
-		findLocation('265 N. ROBERTSON, BEVERLY HILLS, CA 90211,USA');
-		findLocation('7100 BEVERLY BLVD., LOS ANGELES, CA 90036,USA');
-		findLocation('10799 SANTA MONICA BLVD, LOS ANGELES, CA 90025,USA');
-		findLocation('10757-61 VENICE BLVD., LOS ANGELES, CA 90034,USA');
-		findLocation('1435 S. LA CIENEGA BLVD. #D, LOS ANGELES, CA 90035,USA');
-		findLocation('11151 W OLYMPIC BLVD, LOS ANGELES, CA 90064,USA');
-		findLocation('11779 WEST PICO BLVD, LOS ANGELES, CA 90064 ,USA');
-		findLocation('1719 WILSHIRE BLVD, SANTA MONICA, CA 90403,USA');
-		findLocation('4940 SOUTH SEPULVEDA BLVD, CULVER CITY, CA 90230,USA');
-		findLocation('2487 LINCOLN BLVD, VENICE, CA 90291,USA');
-		findLocation('120 LAS TUNAS DR, ARCADIA, CA 91007,USA');
-		findLocation('1325 W REDONDO BEACH BLVD, GARDENA, CA 90247,USA');
-		findLocation('1890 EAST COLORADO BLVD, PASADENA, CA 91107,USA');
-		findLocation('1702 SANTA MONICA BLVD, SANTA MONICA, CA 90404,USA');
-		findLocation('764 E LOS ANGELES AVE, SIMI VALLEY, CA 93065,USA');
-	}
+    findRentalLocation('265 N. ROBERTSON, BEVERLY HILLS, CA 90211,USA');
+    findRentalLocation('7100 BEVERLY BLVD., LOS ANGELES, CA 90036,USA');
+    findRentalLocation('10799 SANTA MONICA BLVD, LOS ANGELES, CA 90025,USA');
+    findRentalLocation('10757-61 VENICE BLVD., LOS ANGELES, CA 90034,USA');
+    findRentalLocation('1435 S. LA CIENEGA BLVD. #D, LOS ANGELES, CA 90035,USA');
+    findRentalLocation('11151 W OLYMPIC BLVD, LOS ANGELES, CA 90064,USA');
+    findRentalLocation('11779 WEST PICO BLVD, LOS ANGELES, CA 90064 ,USA');
+    findRentalLocation('1719 WILSHIRE BLVD, SANTA MONICA, CA 90403,USA');
+    findRentalLocation('4940 SOUTH SEPULVEDA BLVD, CULVER CITY, CA 90230,USA');
+    findRentalLocation('2487 LINCOLN BLVD, VENICE, CA 90291,USA');
+    findRentalLocation('120 LAS TUNAS DR, ARCADIA, CA 91007,USA');
+    findRentalLocation('1325 W REDONDO BEACH BLVD, GARDENA, CA 90247,USA');
+    findRentalLocation('1890 EAST COLORADO BLVD, PASADENA, CA 91107,USA');
+    findRentalLocation('1702 SANTA MONICA BLVD, SANTA MONICA, CA 90404,USA');
+    findRentalLocation('764 E LOS ANGELES AVE, SIMI VALLEY, CA 93065,USA');
+  }
 
     // add metro stations to map
     function addStationsToMap() {
-		var nyLayer = new google.maps.KmlLayer(
-		'https://raw.github.com/chandrask/First-Repo/master/lametro.kml',
-		{suppressInfoWindows: true,
-		 map: map
-		});
+    var nyLayer = new google.maps.KmlLayer(
+    'https://raw.github.com/chandrask/First-Repo/master/lametro.kml',
+    {suppressInfoWindows: true,
+     map: map
+    });
     }
     
     // center map to LA
@@ -107,68 +106,97 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
      }
     }
     
-    function addAddressToMap(response) {
-		if (!response || response.Status.code != 200) {
-			alert("Sorry, we were unable to geocode that address");
-		} 
-		else {
-			place = response.Placemark[0];
-			point = new google.maps.LatLng(place.Point.coordinates[1],
-							   place.Point.coordinates[0]);
-			
-			var image = 'https://github.com/chandrask/First-Repo/raw/master/Landmark.png';
-			
-			var marker = new google.maps.Marker({
-				position: point,
-				map: map,
-				icon: image
-			});
-		}
+      //   function addAddressToMap(response) {
+      //if (!response || response.Status.code != 200) {
+      //alert('Sorry, we were unable to geocode the address: '+response.name);
+      //} else {
+      //place = response.Placemark[0];
+      //point = new google.maps.LatLng(place.Point.coordinates[1],
+      //           place.Point.coordinates[0]);
+      //
+      //var image = 'https://github.com/chandrask/First-Repo/raw/master/Landmark.png';
+      //
+      //var marker = new google.maps.Marker({
+      //  position: point,
+      //  map: map,
+      //  icon: image
+      //});
+      //}
+      //}
+      
+    function addAddressToMap(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        //map.setCenter(results[0].geometry.location);
+        var image = 'https://github.com/chandrask/First-Repo/raw/master/Landmark.png';
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            icon: image
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
     }
 
-    function addRentalAddressToMap(response) {
-		if (!response || response.Status.code != 200) {
-			alert("Sorry, we were unable to geocode that address");
-		} 
-		else {
-			place = response.Placemark[0];
-			point = new google.maps.LatLng(place.Point.coordinates[1],
-							   place.Point.coordinates[0]);
+      //function addRentalAddressToMap(response) {
+      //if (!response || response.Status.code != 200) {
+      //alert("Sorry, we were unable to geocode the address: "+response.name+"; "+response.Status.code);
+      //} 
+      //else {
+      //place = response.Placemark[0];
+      //point = new google.maps.LatLng(place.Point.coordinates[1],
+      //                 place.Point.coordinates[0]);
+      //
+      //var image = 'https://github.com/chandrask/First-Repo/raw/master/CarRental.PNG';
+      //
+      //var marker = new google.maps.Marker({
+        //position: point,
+        //map: map,
+        //icon: image
+        //});
+      //}
+      //}
 
-			var image = 'https://github.com/chandrask/First-Repo/raw/master/CarRental.PNG';
-			
-			var marker = new google.maps.Marker({
-				position: point,
-				map: map,
-				icon: image
-			});
-		}
+    function addRentalAddressToMap(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        //map.setCenter(results[0].geometry.location);
+        var image = 'https://github.com/chandrask/First-Repo/raw/master/CarRental.PNG';
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location,
+            icon: image
+        });
+      } else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
     }
-    
+
     function clearMap() {
-		map.clearOverlays();
+    map.clearOverlays();
     }
     
     function showLocation() {
-		var address = locationAddress;
-		geocoder.getLocations(address, addAddressToMap);
+    var address = locationAddress;
+      //geocoder.getLocations(address, addAddressToMap);
+      geocoder.geocode( { 'address': address}, addAddressToMap);
     }
     
     // findLocation() is used to enter the sample addresses into the form.
     function findLocation(address) {
-		locationAddress = address;
-		showLocation();
+    locationAddress = address;
+    showLocation();
     }
 
     function showRentalLocation() {
-		var address = locationAddress;
-		geocoder.getLocations(address, addRentalAddressToMap);
+    var address = locationAddress;
+      //geocoder.getLocations(address, addRentalAddressToMap);
+      geocoder.geocode( { 'address': address}, addRentalAddressToMap);
     }
     
     // findLocation() is used to enter the sample addresses into the form.
     function findRentalLocation(address) {
-		locationAddress = address;
-		showRentalLocation();
+    locationAddress = address;
+    setTimeout("showRentalLocation()",3000);
     }
     
     </script>
@@ -188,5 +216,6 @@ Apache license (http://www.apache.org/licenses/LICENSE-2.0.html)
 
   </body>
 </html>
+
 
 ​
